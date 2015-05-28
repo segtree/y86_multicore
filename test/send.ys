@@ -1,0 +1,22 @@
+    .pos 0
+Main:
+    irmovl $0, %eax
+    iaddl $1, %eax
+    addl %eax, %ebx
+    swap %ebx, $0x2000(%eax)
+    iaddl $1, %eax
+    addl %eax, %ebx
+    swap %ebx, $0x2000(%eax)
+    iaddl $1, %eax
+    addl %eax, %ebx
+    swap %ebx, $0x2000(%eax)
+    iaddl $1, %eax
+    addl %eax, %ebx
+    swap %ebx, $0x2000(%eax)
+    iaddl $1, %eax
+    addl %eax, %ebx
+    swap %ebx, $0x2000(%eax)
+    iaddl $1, %eax
+    addl %eax, %ebx
+    swap %ebx, $0x2000(%eax)
+    halt

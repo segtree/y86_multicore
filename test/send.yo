@@ -1,0 +1,22 @@
+  0x000:              |     .pos 0
+  0x000:              | Main:
+  0x000: 30f000000000 |     irmovl $0, %eax
+  0x006: c0f001000000 |     iaddl $1, %eax
+  0x00c: 6003         |     addl %eax, %ebx
+  0x00e: f03000200000 |     swap %ebx, $0x2000(%eax)
+  0x014: c0f001000000 |     iaddl $1, %eax
+  0x01a: 6003         |     addl %eax, %ebx
+  0x01c: f03000200000 |     swap %ebx, $0x2000(%eax)
+  0x022: c0f001000000 |     iaddl $1, %eax
+  0x028: 6003         |     addl %eax, %ebx
+  0x02a: f03000200000 |     swap %ebx, $0x2000(%eax)
+  0x030: c0f001000000 |     iaddl $1, %eax
+  0x036: 6003         |     addl %eax, %ebx
+  0x038: f03000200000 |     swap %ebx, $0x2000(%eax)
+  0x03e: c0f001000000 |     iaddl $1, %eax
+  0x044: 6003         |     addl %eax, %ebx
+  0x046: f03000200000 |     swap %ebx, $0x2000(%eax)
+  0x04c: c0f001000000 |     iaddl $1, %eax
+  0x052: 6003         |     addl %eax, %ebx
+  0x054: f03000200000 |     swap %ebx, $0x2000(%eax)
+  0x05a: 00           |     halt

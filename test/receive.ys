@@ -1,0 +1,19 @@
+    .pos 0
+Main:
+    rmmovl %eax, $0x100
+    rmmovl %eax, $0x100
+    rmmovl %eax, $0x100
+    rmmovl %eax, $0x100
+    rmmovl %eax, $0x100
+    rmmovl %eax, $0x100
+    rmmovl %eax, $0x100
+    rmmovl %eax, $0x100
+    rmmovl %eax, $0x100
+    rmmovl %eax, $0x100
+    rmmovl %eax, $0x100
+    rmmovl %eax, $0x100
+    rmmovl %eax, $0x100
+    rmmovl %eax, $0x100
+    rmmovl %eax, $0x100
+    rmmovl %eax, $0x100
+    halt

@@ -106,11 +106,11 @@ void check_update(mem_t m)
     for(i = 0; i < n; i++)
     {
         pos =
-            (m->shared[SP + 4 + i * 5] << 0) +
-            (m->shared[SP + 4 + i * 5 + 1] << 8) +
-            (m->shared[SP + 4 + i * 5 + 2] << 16) +
-            (m->shared[SP + 4 + i * 5 + 3] << 24);
-        val = (m->shared[SP + 4 + i * 5 + 4]);
+            (m->shared[SP + 8 + i * 5] << 0) +
+            (m->shared[SP + 8 + i * 5 + 1] << 8) +
+            (m->shared[SP + 8 + i * 5 + 2] << 16) +
+            (m->shared[SP + 8 + i * 5 + 3] << 24);
+        val = (m->shared[SP + 8 + i * 5 + 4]);
         if(cached(m, pos))
             write_cache(m, pos, val);
     }

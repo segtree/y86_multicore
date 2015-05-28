@@ -2,8 +2,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #include "isa.h"
+
+#define PAUSE
 
 /* YIS never runs in GUI mode */
 int gui_mode = 0;
@@ -18,6 +21,8 @@ int main(int argc, char *argv[])
 {
     FILE *code_file;
     int max_steps = 10000;
+
+    srand(time(0));
 
     state_ptr s = new_state(MEM_SIZE);
 
@@ -56,7 +61,18 @@ int main(int argc, char *argv[])
         max_steps = atoi(argv[2]);
 
     for (step = 0; step < max_steps && e == STAT_AOK; step++)
+    {
         e = step_state(s, stdout);
+        #ifdef PAUSE
+        printf("step %d finished.\n", step);
+        printf("private mem:\n");
+        dump_memory(stdout, s->m, 0, 32);
+        printf("\nshared mem:\n");
+        dump_memory(stdout, s->m, MEM_SIZE, 32);
+        printf("\n");
+        getchar();
+        #endif
+    }
 
     printf("Stopped in %d steps at PC = 0x%x.  Status '%s', CC %s\n",
             step, s->pc, stat_name(e), cc_name(s->cc));
