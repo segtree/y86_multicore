@@ -1,0 +1,18 @@
+    .pos 0
+Init:
+    jmp Main
+    .align 4
+array:
+    .long 0x1234
+    .long 0x5678
+    .long 0xffff
+Main:
+    irmovl $42, %eax
+    irmovl $43, %ebx
+    irmovl $44, %ecx
+    irmovl $0, %edx
+    swap %eax, array(%edx)
+    irmovl $4, %edx
+    swap %ebx, array(%edx)
+    irmovl $8, %edx
+    swap %ecx, array(%edx)

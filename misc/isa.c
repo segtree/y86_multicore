@@ -218,7 +218,7 @@ instr_t instruction_set[] =
     /* this is just a hack to make the I_POP2 code have an associated name */
     {"pop2",   HPACK(I_POP2, F_NONE) , 0, NO_ARG, 0, 0, NO_ARG, 0, 0 },
     // swap added
-    {"swap", HPACK(I_SWAP, F_NONE), 2, R_ARG, 1, 1, R_ARG, 1, 0},
+    {"swap", HPACK(I_SWAP, F_NONE), 6, R_ARG, 1, 1, M_ARG, 1, 0},
 
     /* For allocation instructions, arg1hi indicates number of bytes */
     {".byte",  0x00, 1, I_ARG, 0, 1, NO_ARG, 0, 0 },
@@ -1047,7 +1047,7 @@ stat_t step_state(state_ptr s, FILE *error_file)
 
     need_imm =
         (hi0 == I_IRMOVL || hi0 == I_RMMOVL || hi0 == I_MRMOVL ||
-         hi0 == I_JMP || hi0 == I_CALL || hi0 == I_IADDL);
+         hi0 == I_JMP || hi0 == I_CALL || hi0 == I_IADDL || hi0 == I_SWAP);
 
     if (need_imm) {
         okc = get_word_val(s->m, ftpc, &cval);
