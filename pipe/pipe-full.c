@@ -181,24 +181,22 @@ int gen_mem_addr()
 {
     return (((ex_mem_curr->icode) == (I_RMMOVL) || (ex_mem_curr->icode) == 
         (I_PUSHL) || (ex_mem_curr->icode) == (I_CALL) || 
-        (ex_mem_curr->icode) == (I_MRMOVL) || (ex_mem_curr->icode) == 
-        (I_SWAP)) ? (ex_mem_curr->vale) : ((ex_mem_curr->icode) == (I_POPL)
-         || (ex_mem_curr->icode) == (I_RET) || (ex_mem_curr->icode) == 
-        (I_LEAVE)) ? (ex_mem_curr->vala) : 0);
+        (ex_mem_curr->icode) == (I_MRMOVL)) ? (ex_mem_curr->vale) : (
+        (ex_mem_curr->icode) == (I_POPL) || (ex_mem_curr->icode) == (I_RET)
+         || (ex_mem_curr->icode) == (I_LEAVE)) ? (ex_mem_curr->vala) : 0);
 }
 
 int gen_mem_read()
 {
     return ((ex_mem_curr->icode) == (I_MRMOVL) || (ex_mem_curr->icode) == 
       (I_POPL) || (ex_mem_curr->icode) == (I_RET) || (ex_mem_curr->icode)
-       == (I_LEAVE) || (ex_mem_curr->icode) == (I_SWAP));
+       == (I_LEAVE));
 }
 
 int gen_mem_write()
 {
     return ((ex_mem_curr->icode) == (I_RMMOVL) || (ex_mem_curr->icode) == 
-      (I_PUSHL) || (ex_mem_curr->icode) == (I_CALL) || (ex_mem_curr->icode)
-       == (I_SWAP));
+      (I_PUSHL) || (ex_mem_curr->icode) == (I_CALL));
 }
 
 int gen_m_stat()

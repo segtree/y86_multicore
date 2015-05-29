@@ -285,16 +285,16 @@ int e_dstE = [
 
 ## Select memory address
 int mem_addr = [
-	M_icode in { IRMMOVL, IPUSHL, ICALL, IMRMOVL, ISWAP } : M_valE;
+	M_icode in { IRMMOVL, IPUSHL, ICALL, IMRMOVL } : M_valE;
 	M_icode in { IPOPL, IRET, ILEAVE } : M_valA;
 	# Other instructions don't need address
 ];
 
 ## Set read control signal
-bool mem_read = M_icode in { IMRMOVL, IPOPL, IRET, ILEAVE, ISWAP };
+bool mem_read = M_icode in { IMRMOVL, IPOPL, IRET, ILEAVE };
 
 ## Set write control signal
-bool mem_write = M_icode in { IRMMOVL, IPUSHL, ICALL, ISWAP };
+bool mem_write = M_icode in { IRMMOVL, IPUSHL, ICALL };
 
 #/* $begin pipe-m_stat-hcl */
 ## Update the status

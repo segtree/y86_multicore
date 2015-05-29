@@ -7,6 +7,7 @@
 #include "isa.h"
 
 // #define PAUSE
+// #define DEBUG
 
 /* YIS never runs in GUI mode */
 int gui_mode = 0;
@@ -26,13 +27,17 @@ int main(int argc, char *argv[])
 
     state_ptr s = new_state(MEM_SIZE);
 
+    #ifdef DEBUG
     printf("state created.\n");
+    #endif
 
     mem_t saver = copy_reg(s->r);
     mem_t savem;
     int step = 0;
 
+    #ifdef DEBUG
     printf("init done.\n");
+    #endif
 
     stat_t e = STAT_AOK;
 
@@ -44,18 +49,24 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
+    #ifdef DEBUG
     printf("file opened.\n");
+    #endif
 
     if (!load_mem(s->m, code_file, 1)) {
         printf("Exiting\n");
         return 1;
     }
 
+    #ifdef DEBUG
     printf("loading done.\n");
+    #endif
 
     savem = copy_mem(s->m);
 
+    #ifdef DEBUG
     printf("mem copied.\n");
+    #endif
 
     if (argc > 2)
         max_steps = atoi(argv[2]);
