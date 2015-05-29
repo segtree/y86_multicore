@@ -1,0 +1,27 @@
+    .pos 0
+Init:
+    jmp Main
+Main:
+Test1:
+    irmovl $42, %eax
+    irmovl $43, %ebx
+    irmovl $44, %ecx
+    irmovl $0, %edx
+    swap %eax, array(%edx)
+    irmovl $4, %edx
+    swap %ebx, array(%edx)
+    irmovl $8, %edx
+    swap %ecx, array(%edx)
+Test2:
+    irmovl $0x2000, %ebx
+    irmovl $0xaa, %eax
+    swap %eax, (%ebx)
+    irmovl $0xbb, %eax
+    swap %eax, $4(%ebx)
+    halt
+    .pos 0x2000
+    .align 4
+array:
+    .long 0x1234
+    .long 0x5678
+    .long 0xffff

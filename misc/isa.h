@@ -150,6 +150,9 @@ bool_t set_word_val(mem_t m, word_t pos, word_t val);
 // swap a word
 bool_t swap_word_val(mem_t m, word_t pos, word_t *val);
 
+// swap reg and mem
+bool_t swap_reg_mem(mem_t r, reg_id_t id, mem_t m, word_t pos);
+
 /* Print contents of memory */
 void dump_memory(FILE *outfile, mem_t m, word_t pos, int cnt);
 

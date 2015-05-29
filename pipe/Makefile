@@ -4,7 +4,7 @@ VERSION=full
 
 # Comment this out if you don't have Tcl/Tk on your system
 
-GUIMODE=-DHAS_GUI
+# GUIMODE=-DHAS_GUI
 
 # Modify the following line so that gcc can find the libtcl.so and
 # libtk.so libraries on your system. You may need to use the -L option
@@ -41,6 +41,12 @@ all: psim drivers
 psim: psim.c sim.h pipe-$(VERSION).hcl $(MISCDIR)/isa.c $(MISCDIR)/isa.h
 	# Building the pipe-$(VERSION).hcl version of PIPE
 	$(HCL2C) -n pipe-$(VERSION).hcl < pipe-$(VERSION).hcl > pipe-$(VERSION).c
+	$(CC) $(CFLAGS) $(INC) -o psim psim.c pipe-$(VERSION).c \
+		$(MISCDIR)/isa.c $(LIBS)
+
+# This rule builds the PIPE simulator
+sim:
+	# Building the pipe-$(VERSION).hcl version of PIPE
 	$(CC) $(CFLAGS) $(INC) -o psim psim.c pipe-$(VERSION).c \
 		$(MISCDIR)/isa.c $(LIBS)
 

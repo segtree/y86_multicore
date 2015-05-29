@@ -437,6 +437,9 @@ bool_t diff_mem(mem_t oldm, mem_t newm, FILE *outfile)
 
 int hex2dig(char c)
 {
+    #ifdef DEBUG
+    printf("decoding hex %c.\n", c);
+    #endif
     if (isdigit((int)c))
         return c - '0';
     if (isupper((int)c))
@@ -510,6 +513,9 @@ int load_mem(mem_t m, FILE *infile, int report_error)
         while (isxdigit((int)(ch=buf[cpos++])) && 
                 isxdigit((int)(cl=buf[cpos++]))) {
             byte_t byte = 0;
+            #ifdef DEBUG
+            printf("loading mem addr 0x%.4x.\n", bytepos);
+            #endif
             if (!m->shared && bytepos >= m->len || bytepos >= m->len * 2) {
                 if (report_error) {
                     fprintf(stderr,
@@ -803,6 +809,27 @@ void set_reg_val(mem_t r, reg_id_t id, word_t val)
 #endif /* HAS_GUI */
     }
 }
+
+// swap reg and mem
+bool_t swap_reg_mem(mem_t r, reg_id_t id, mem_t m, word_t pos)
+{
+    lock(m);
+    word_t rv = get_reg_val(r, id), mv;
+    if(!get_word_val(m, pos, &mv))
+    {
+        unlock(m);
+        return FALSE;
+    }
+    if(!set_word_val(m, pos, rv))
+    {
+        unlock(m);
+        return FALSE;
+    }
+    set_reg_val(r, id, mv);
+    unlock(m);
+    return TRUE;
+}
+// swap end
 
 void dump_reg(FILE *outfile, mem_t r) {
     reg_id_t id;

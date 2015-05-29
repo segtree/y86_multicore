@@ -601,6 +601,15 @@ static void update_state(bool_t update_mem, bool_t update_cc)
        popl %esp.  According to ISA, %esp will get popped value
     */
 
+    // swap goes here
+    #ifdef HARDSWAP
+    if(mem_wb_curr->icode == I_SWAP)
+    {
+        swap_reg_mem(reg, wb_destM, mem, mem_addr);
+        return;
+    }
+    #endif
+
     if (wb_destE != REG_NONE) {
 	sim_log("\tWriteback: Wrote 0x%x to register %s\n",
 		wb_valE, reg_name(wb_destE));

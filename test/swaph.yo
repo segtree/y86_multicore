@@ -1,0 +1,27 @@
+  0x000:              |     .pos 0
+  0x000:              | Init:
+  0x000: 7005000000   |     jmp Main
+  0x005:              | Main:
+  0x005:              | Test1:
+  0x005: 30f02a000000 |     irmovl $42, %eax
+  0x00b: 30f32b000000 |     irmovl $43, %ebx
+  0x011: 30f12c000000 |     irmovl $44, %ecx
+  0x017: 30f200000000 |     irmovl $0, %edx
+  0x01d: f00200200000 |     swap %eax, array(%edx)
+  0x023: 30f204000000 |     irmovl $4, %edx
+  0x029: f03200200000 |     swap %ebx, array(%edx)
+  0x02f: 30f208000000 |     irmovl $8, %edx
+  0x035: f01200200000 |     swap %ecx, array(%edx)
+  0x03b:              | Test2:
+  0x03b: 30f300200000 |     irmovl $0x2000, %ebx
+  0x041: 30f0aa000000 |     irmovl $0xaa, %eax
+  0x047: f00300000000 |     swap %eax, (%ebx)
+  0x04d: 30f0bb000000 |     irmovl $0xbb, %eax
+  0x053: f00304000000 |     swap %eax, $4(%ebx)
+  0x059: 00           |     halt
+  0x000:              |     .pos 0x2000
+  0x000:              |     .align 4
+  0x000:              | array:
+  0x000: 34120000     |     .long 0x1234
+  0x004: 78560000     |     .long 0x5678
+  0x008: ffff0000     |     .long 0xffff

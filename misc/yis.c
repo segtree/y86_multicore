@@ -6,7 +6,7 @@
 
 #include "isa.h"
 
-#define PAUSE
+// #define PAUSE
 
 /* YIS never runs in GUI mode */
 int gui_mode = 0;
